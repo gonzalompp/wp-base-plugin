@@ -11,7 +11,8 @@ class Wp_Base_Plugin
 
     /**** Custom Plugin Properties ****/
 
-    protected $service_url_endpoint;
+    protected $css_filepath;
+    protected $js_filepath;
 
 
     /**** Plugin Constructor and Initializer(Run) ****/
@@ -24,7 +25,8 @@ class Wp_Base_Plugin
 		  $this->version = '1.0.0';
 
       //set the variable for the example endpoint. you can use a option plugin to store it and change it later in the admin page
-      $this->service_url_endpoint = "http://servicedomain.com/api/elements";
+      $this->css_filepath = 'public/css/style.css';
+      $this->js_filepath = 'public/js/script.js';
     }
 
     //The run method starts the execution of the plugin. Usually, calls all the following methods needed.
@@ -56,12 +58,12 @@ class Wp_Base_Plugin
 
     //enqueue a style
     function themeslug_enqueue_style() {
-    	wp_enqueue_style( 'my-plugin', WPBP_PLUGIN_PATH.'public/css/style.css', false );
+    	wp_enqueue_style( 'my-plugin', WPBP_PLUGIN_PATH.$this->css_filepath, false );
     }
 
     //enqueue a script
     function themeslug_enqueue_script() {
-    	wp_enqueue_script( 'my-plugin', WPBP_PLUGIN_PATH.'public/js/script.js', false );
+    	wp_enqueue_script( 'my-plugin', WPBP_PLUGIN_PATH.$this->js_filepath, false );
     }
 }
 
